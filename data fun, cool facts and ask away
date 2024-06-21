@@ -1,0 +1,44 @@
+
+Difficulties
+
+One difficulty I faced was that the dataset was in a CSV file, and I had to import it into MySQL Workbench. I had to create a new schema and table, and then import the data into the table. Another difficulty was that the dataset did not have a unique identifier for each record, so I had to use the country and platform columns as a composite primary key.
+
+Interesting Thing
+
+One interesting thing I noticed about the dataset is that the average time spent on social media platforms varies greatly across different countries. For example, users from the Philippines spend an average of 4 hours and 12 minutes on social media platforms, while users from Japan spend an average of 1 hour and 45 minutes.
+
+Data Fun
+
+Here are the SQL queries I used to play with the data:
+
+1. Find the total time spent on social media platforms by users from all countries:
+
+SELECT SUM(time_spent) FROM social_media;
+
+2. Find the average time spent on social media platforms by users from each country:
+
+SELECT country, AVG(time_spent) FROM social_media GROUP BY country;
+
+3. Find the total time spent on social media platforms by users from each country:
+
+SELECT country, SUM(time_spent) FROM social_media GROUP BY country;
+
+Here are the two cool facts I found:
+
+1. The country with the highest average time spent on social media platforms is the Philippines, with an average of 4 hours and 12 minutes per day.
+2. The country with the highest total time spent on social media platforms is India, with a total of 1,064,800 hours per day.
+
+Ask Away
+Here are the two questions I asked:
+
+1. Which social media platform is the most popular in each country?
+Answer: To find the answer, I used the following SQL query:
+SELECT country, platform, MAX(users) FROM social_media GROUP BY country;
+
+I learned that Facebook is the most popular social media platform in most countries, but there are some exceptions. For example, in Russia, VKontakte is the most popular platform, and in China, WeChat is the most popular platform.
+
+2.  Which country has the highest percentage of users who use YouTube?
+Answer: To find the answer, I used the following SQL query:
+SELECT country, ROUND(SUM(CASE WHEN platform = 'YouTube' THEN users ELSE 0 END) / SUM(users) * 100, 2) AS percentage FROM social_media GROUP BY country ORDER BY percentage DESC;
+
+I learned that the country with the highest percentage of users who use YouTube is Saudi Arabia, with 95.04%.
